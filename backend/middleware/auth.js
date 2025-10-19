@@ -13,7 +13,9 @@ export const protect = async (req, res, next) => {
       return res.status(401).json({ message: 'Not authorized, no token' });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallbacksecret');
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallbacksecret');git remote add origin https://github.com/asmagasmi/projetfinal.git
+
+    
     req.user = await User.findById(decoded.id).select('-password');
     next();
   } catch (error) {
